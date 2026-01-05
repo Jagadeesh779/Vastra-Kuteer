@@ -49,16 +49,17 @@ const Footer = () => {
                         <h3 className="text-lg font-serif font-semibold mb-6 text-white border-b-2 border-vastra-gold inline-block pb-1">Contact Us</h3>
                         <ul className="space-y-4 text-gray-400 text-sm">
                             <li className="flex items-start space-x-3">
-                                <MapPin className="h-5 w-5 text-vastra-teal mt-0.5" />
-                                <span>123, Heritage Road, Fashion Street, Hyderabad, India - 500001</span>
+                                <MapPin className="h-6 w-6 text-vastra-teal mt-0.5 flex-shrink-0" />
+                                <span>Rudhra Hasthina,D Block 401,NRI Colony,Pragathi Nagar,Hyderabad.
+                                    pincode : 500090</span>
                             </li>
                             <li className="flex items-center space-x-3">
                                 <Phone className="h-5 w-5 text-vastra-teal" />
-                                <span>+91 98765 43210</span>
+                                <span>+91 63016 55436</span>
                             </li>
                             <li className="flex items-center space-x-3">
                                 <Mail className="h-5 w-5 text-vastra-teal" />
-                                <span>support@vastrakuteer.com</span>
+                                <span>vastrakuteer9@gmail.com</span>
                             </li>
                         </ul>
                     </div>
