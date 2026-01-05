@@ -1,19 +1,40 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, User, ShieldCheck, ArrowRight } from 'lucide-react';
+import axios from 'axios';
+import { API_URL } from '../config';
 
 const Login = () => {
     const [isAdmin, setIsAdmin] = useState(false);
     const [formData, setFormData] = useState({ email: '', password: '' });
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Login Data:', formData, 'Role:', isAdmin ? 'Admin' : 'User');
-        // Add API call here
+        setError('');
+
+        try {
+            const res = await axios.post(`${API_URL}/api/auth/login`, {
+                email: formData.email,
+                password: formData.password
+            });
+            console.log('Login Success:', res.data);
+
+            // Store token/user data (Mocking token storage for now as backend returns user)
+            // localStorage.setItem('token', res.data.token); 
+            localStorage.setItem('user', JSON.stringify(res.data.user));
+
+            alert('Login Successful!');
+            navigate('/');
+        } catch (err) {
+            console.error(err);
+            setError(err.response?.data?.message || 'Login failed. Please checks your credentials.');
+        }
     };
 
     return (
@@ -59,6 +80,12 @@ const Login = () => {
                             Enter your credentials to access your account
                         </p>
                     </div>
+
+                    {error && (
+                        <div className="bg-red-50 text-red-600 p-3 rounded-md text-sm text-center border border-red-100 mb-6">
+                            {error}
+                        </div>
+                    )}
 
                     <form className="space-y-6" onSubmit={handleSubmit}>
                         <div className="space-y-4">

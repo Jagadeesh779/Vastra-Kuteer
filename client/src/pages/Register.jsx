@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, User, Check, ArrowLeft } from 'lucide-react';
 import axios from 'axios';
+import { API_URL } from '../config';
 
 const Register = () => {
     const [formData, setFormData] = useState({ fullName: '', email: '', password: '', confirmPassword: '' });
@@ -22,7 +23,7 @@ const Register = () => {
         }
 
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/register', {
+            const res = await axios.post(`${API_URL}/api/auth/register`, {
                 fullName: formData.fullName,
                 email: formData.email,
                 password: formData.password
